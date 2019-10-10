@@ -257,6 +257,10 @@ class TranslationsDbAdapter implements DataDbAdapter
                 if ($record['objectType'] === 'configuratorgroup') {
                     $data['description'] = $record['description'];
                 }
+                
+                if ($record['objectType'] === 'propertyvalue' && $record['description']) {
+                    $data['__attribute_description_text'] = $record['description'];
+                }
 
                 $translationWriter->write($shop->getId(), $record['objectType'], $element->getId(), $data);
 
